@@ -78,7 +78,42 @@ logs_autenticacion = [
 }
 ]
 
-print(logs_autenticacion)
+#print(logs_autenticacion)
+
 ### Asi funciona datetime 
-hoy = datetime.now()
+#hoy = datetime.now()
 #print(f"Hoy es {hoy.day}/{hoy.month}/{hoy.year}. Son las {hoy.hour}:{hoy.minute}:{hoy.second}")
+
+## Mismo ejercicio pero mas dinamico y utilizando datetime.
+
+# Para hacerlo mas dinamico: 
+## (a) Continuamos con la aleatoriedad en los log levels.
+log_levels = ["INFO", "WARNING", "ERROR", "DEBUG", "CRITICAL"]
+
+## (b) Aleatoriedad en los mensajes
+mensajes = [
+    "Nuevo usuario ha iniciado sesión",
+    "Intento de login fallido (usuario inexistente)",
+    "Token inválido recibido",
+    "Chequeando credenciales del usuario",
+    "Servicio AuthService caído"
+]
+
+logs_autenticacion = [] # aqui se agregaran los logs
+
+for _ in range(5):  # Generamos 5 logs falsos
+    # estructura que tendra cada log
+    log = {
+    ## (c) Usar datetime.now    
+        "timestamp" : datetime.now().strftime("%Y-%m-%d %H:%M:%S"),    # con su string format time para pasarle un formato exacto (year-month-day hour-minute-second sin microseg)
+        "severity" : random.choice(log_levels),
+        "service" : "AuthService",
+        "message" : random.choice(mensajes)
+    }
+    logs_autenticacion.append(log)   # anhadimos los logs generados 
+
+    ## (d) timesleep para simular que pasa x tiempo entre cada log
+    time.sleep(2)
+    #print(log)
+
+print(logs_autenticacion)
