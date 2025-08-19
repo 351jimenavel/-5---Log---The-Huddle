@@ -61,3 +61,32 @@ if not auth_val.startswith('Token '):
     print('Falta prefijo "Token "')
 else:
     print("Header Authorization con formato correcto")
+
+print()
+
+# ----------------------- (4) Testeo de resultados -----------------------
+def probar(headers, descripcion):
+    print(f"Caso: {descripcion}")
+
+    try:
+        r = requests.post(ENDPOINT, json=datos, headers=headers, timeout=3)
+        eco = r.json()
+        # Sacar el valor Authorization del eco (si existe)
+        auth_val = eco['headers'].get('Authorization')
+
+        # Validacion
+        if not auth_val:
+            print('[! FROM HEADER] No se envió Authorization')
+        elif not auth_val.startswith('Token '):
+            print(f"[! FROM HEADER] Authorization recibido pero sin prefijo Token: {auth_val}")
+        else:
+            print(f'[OK FROM HEADER] Authorization correcto: {auth_val}')
+    except requests.exceptions.Timeout:
+        print("[!] Timeout alcanzado (server tardo demasiado)")
+    except Exception as e:
+        print('[!] Error inesperado', e)
+
+# Ejecutar tres situaciones
+probar({"Authorization": "Token ABC123"}, "Token válido (espera OK)")
+probar({"Authorization": "ABC123"}, "Token sin prefijo (espera NOT OK)")
+probar({}, "Sin header Authorization (espera NOT OK)")
