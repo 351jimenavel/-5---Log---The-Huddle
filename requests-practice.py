@@ -23,7 +23,11 @@ r = requests.get('https://httpbin.org/get', params = payload)   # adding "https:
 # print(r.url)
 
 # POST METHOD
-payload = {'username': 'jimena', 'password': 'testing'}
+### Username and password used for testing purposes
+username = "YOUR_USERNAME_HERE"
+password = "YOUR_PASSWORD_HERE"
+
+payload = {'username': username, 'password': password}
 r = requests.post('https://httpbin.org/post', data = payload)   # from get to post, from params to data
 # print(r.text)       # json response back from the http bin website
 # print(r.json())     # json is a method. It creates a python dictionary from that json response
@@ -31,14 +35,14 @@ r = requests.post('https://httpbin.org/post', data = payload)   # from get to po
 # it can me captured in a variable (dictionary object)
 r_dict = r.json()   
 # it allows us to access its elements
-#print(r_dict['form'])   # Output: {'password': 'testing', 'username': 'jimena'}
+#print(r_dict['form'])   # Output: {'password': password, 'username': username}
 
 ## Basic Auth methods
 # Passing credentials for basic authentication
-r = requests.get('https://httpbin.org/basic-auth/jimena/testing', auth=('jimena', 'testing'))
+r = requests.get('https://httpbin.org/basic-auth/jimena/testing', auth=(username, password))
 #print(r.text)
 print(r)    # Output: <Response [200]> --> Ok
-# r = requests.get('https://httpbin.org/basic-auth/jimena/testing', auth=('jimenall', 'testing')) # testing an unauthorized credential
+# r = requests.get('https://httpbin.org/basic-auth/jimena/testing', auth=('jimenall', password)) # testing an unauthorized credential
 # print(r)    # Output: <Response [401]> --> unauthorized response code (which means its working!)
 
 # using timeout 
