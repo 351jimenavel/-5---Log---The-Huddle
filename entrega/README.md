@@ -23,20 +23,14 @@ Servicio central de **logging distribuido**. Recibe logs por HTTP desde múltipl
 ---
 
 ## 📂 Estructura sugerida
-
-├─ main.py # Servidor Flask (endpoints, validaciones, persistencia)
-
-├─ client.py # Cliente simulador (envia logs con tokens)
-
-|─ seeder.py # Crea tabla 'logs' en logs.db
-
-├─ config.py # DB_PATH usando pathlib (ruta absoluta y portable)
-
-├─ tests.http # Suite de pruebas manuales (REST Client VS Code)
-
+entrega/
+├─ main.py            # Servidor Flask (endpoints, validaciones, persistencia)
+├─ client.py          # Cliente simulador (envía logs con tokens)
+├─ seeder.py          # Crea tabla 'logs' en logs.db
+├─ config.py          # DB_PATH usando pathlib (ruta absoluta y portable)
+├─ tests.http         # Suite de pruebas manuales (REST Client VS Code)
 ├─ requirements.txt
-
-└─ logs.db # (creado por seeder.py)
+└─ logs.db            # (creado por seeder.py)
 
 ## 🚀 Quickstart
 
@@ -95,14 +89,9 @@ VS Code REST Client
 Abrí tests.http y clic en “Send Request” en cada caso (espera: 201/401/415/400).
 
 ### 8- Guia de Codigos HTTP
-200: Ok
-
-201: Created
-
-400: Bad Request
-
-401: Unauthorized
-
-415: Unsupported Media Type
-
-500: Internal Server Error
+200  OK
+201  Created
+400  Bad Request
+401  Unauthorized
+415  Unsupported Media Type
+500  Internal Server Error
