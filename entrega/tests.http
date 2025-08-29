@@ -1,0 +1,87 @@
+# 
+# ------------------- Suite de pruebas manuales para la API de Logging (/logs) -------------------
+# Formato: VS Code REST Client / IntelliJ HTTP Client
+#
+# ¿Qué es?
+# - Un set de requests de ejemplo para verificar el contrato
+#   de tu endpoint POST /logs con distintos escenarios.
+# - Cada bloque "### ..." indica el caso y el CÓDIGO HTTP esperado.
+#
+# Cómo usar
+# 1) Levantá el server: http://127.0.0.1:8000
+# 2) Abrí este archivo en VS Code con la extensión "REST Client".
+# 3) Encima de cada request vas a ver "Send Request" -> clic para enviarlo.
+#    (No se muestran resultados aquí; miralos en el panel de respuesta.)
+#
+
+
+### OK -> 201: payload válido + token correcto -> crea log.
+POST http://127.0.0.1:8000/logs
+Content-Type: application/json
+Authorization: Token ABC123
+
+{
+  "timestamp": "2025-08-24T17:00:00Z",
+  "service": "Frontend",
+  "severity": "INFO",
+  "message": "ping ok"
+}
+
+### Sin token -> 401: falta Authorization -> acceso denegado.
+POST http://127.0.0.1:8000/logs
+Content-Type: application/json
+
+{
+  "timestamp": "2025-08-24T17:00:00Z",
+  "service": "Frontend",
+  "severity": "INFO",
+  "message": "ping ok"
+}
+
+### Token inválido -> 401: credencial desconocida -> acceso denegado.
+POST http://127.0.0.1:8000/logs
+Content-Type: application/json
+Authorization: Token INVALIDO
+
+{
+  "timestamp": "2025-08-24T17:00:00Z",
+  "service": "Frontend",
+  "severity": "INFO",
+  "message": "ping ok"
+}
+
+### Content-Type malo -> 415: no es application/json.
+POST http://127.0.0.1:8000/logs
+Content-Type: text/plain
+Authorization: Token ABC123
+
+{
+  "timestamp": "2025-08-24T17:00:00Z",
+  "service": "Frontend",
+  "severity": "INFO",
+  "message": "ping ok"
+}
+
+### severity inválido -> 400: valor fuera de la whitelist {INFO,DEBUG,WARN,ERROR}.
+POST http://127.0.0.1:8000/logs
+Content-Type: application/json
+Authorization: Token ABC123
+
+{
+  "timestamp": "2025-08-24T17:00:00Z",
+  "service": "Frontend",
+  "severity": "CRITICAL",
+  "message": "ping ok"
+}
+
+### timestamp sin zona -> 400: falta zona horaria (debe ser ISO 8601 con Z u offset).
+POST http://127.0.0.1:8000/logs
+Content-Type: application/json
+Authorization: Token ABC123
+
+{
+  "timestamp": "2025-08-24T17:00:00",
+  "service": "Frontend",
+  "severity": "INFO",
+  "message": "ping ok"
+}

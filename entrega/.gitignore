@@ -1,0 +1,40 @@
+# === Entornos / dependencias ===
+.venv/
+venv/
+env/
+pip-wheel-metadata/
+*.egg-info/
+.Python
+
+# === Python cache ===
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# === SQLite (datos locales) ===
+logs.db
+
+# === Config/secretos (no subir credenciales) ===
+.env
+.env.*
+*.secret
+*.key
+
+# === Herramientas de test/quality ===
+.pytest_cache/
+.coverage*
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+.pytype/
+
+# === OS / IDE ===
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# === Logs temporales ===
+*.log
+logs/
