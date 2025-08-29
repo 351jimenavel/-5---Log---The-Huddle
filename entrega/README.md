@@ -25,11 +25,17 @@ Servicio central de **logging distribuido**. Recibe logs por HTTP desde múltipl
 ## 📂 Estructura sugerida
 
 ├─ main.py # Servidor Flask (endpoints, validaciones, persistencia)
+
 ├─ client.py # Cliente simulador (envia logs con tokens)
+
 |─ seeder.py # Crea tabla 'logs' en logs.db
+
 ├─ config.py # DB_PATH usando pathlib (ruta absoluta y portable)
+
 ├─ tests.http # Suite de pruebas manuales (REST Client VS Code)
+
 ├─ requirements.txt
+
 └─ logs.db # (creado por seeder.py)
 
 ## 🚀 Quickstart
@@ -58,17 +64,17 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 ### 3- Crear la base (Seeder)
-# Crea (si no existe) el archivo logs.db y la tabla logs.
+Crea (si no existe) el archivo logs.db y la tabla logs.
 ```powershell
 python seeder.py
 ```
 ### 4- Levantar el servidor
-# Servirá en http://127.0.0.1:8000
+Servirá en http://127.0.0.1:8000
 ```powershell
 python main.py
 ```
 ### 5- Enviar logs (cliente simulado)
-# El cliente envía N logs alternando servicios y severidades, usando los tokens configurados.
+El cliente envía N logs alternando servicios y severidades, usando los tokens configurados.
 ```powershell
 # En otra terminal (con el venv activado):
 python client.py
@@ -85,13 +91,18 @@ python client.py
   > Es **case-insensitive** en la query ('error', 'Error', 'ERROR' -> todos valen).
 
 ### 7- Pruebas manuales
-# VS Code REST Client
+VS Code REST Client
 Abrí tests.http y clic en “Send Request” en cada caso (espera: 201/401/415/400).
 
 ### 8- Guia de Codigos HTTP
 200: Ok
+
 201: Created
+
 400: Bad Request
+
 401: Unauthorized
+
 415: Unsupported Media Type
+
 500: Internal Server Error
