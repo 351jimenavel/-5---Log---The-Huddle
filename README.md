@@ -88,6 +88,7 @@ python client.py
 
 ### 7- Pruebas manuales
 VS Code REST Client
+
 Abrí tests.http y clic en “Send Request” en cada caso (espera: 201/401/415/400).
 
 ### 8- Guia de Codigos HTTP
