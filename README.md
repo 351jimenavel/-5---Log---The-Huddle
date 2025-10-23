@@ -107,6 +107,7 @@ Abrí tests.http y clic en “Send Request” en cada caso (espera: 201/401/415/
 415  Unsupported Media Type
 500  Internal Server Error
 ```
+---
 
 ## 🇬🇧 English  
 **The Huddle - Penguin Academy**
