@@ -1,4 +1,11 @@
 # 🐧 Logging Distribuido – Flask + SQLite
+**The Huddle - Penguin Academy**
+Autora: Jimena Velazquez
+
+---
+## 🇪🇸 Español
+
+## 📖 Descripción 
 
 Servicio central de **logging distribuido**. Recibe logs por HTTP desde múltiples servicios, los **valida**, **normaliza** (fechas en UTC) y los **guarda** en SQLite. Permite consultarlos con **filtros por query params**.
 
@@ -101,7 +108,13 @@ Abrí tests.http y clic en “Send Request” en cada caso (espera: 201/401/415/
 500  Internal Server Error
 ```
 
-# 🐧 Distributed Logging – Flask + SQLite
+## 🇬🇧 English  
+**The Huddle - Penguin Academy**
+
+Author: Jimena Velazquez
+---
+
+### 📖 Description
 
 Central **distributed logging** service. It receives logs over HTTP from multiple services, **validates** them, **normalizes** timestamps to UTC, and **stores** everything in SQLite. You can query logs using **URL query params**.
 
